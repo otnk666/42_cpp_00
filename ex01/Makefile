@@ -6,13 +6,13 @@ CXXFLAGS 	= -Wall -Werror -Wextra
 CXXFLAGS	+= -std=c++98
 
 RM			= rm -rf
-SRCS		= PhoneBook.cpp
-INCLUDES	= PhoneBook.hpp
+SRCS		= PhoneBook.cpp Contact.cpp
+INCLUDES	= PhoneBook.hpp Contack.hpp
 OBJS		= $(SRCS:.cpp=.o)
 
 all: $(NAME)
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -I $(INCLUDES) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)
