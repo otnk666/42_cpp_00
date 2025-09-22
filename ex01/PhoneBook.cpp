@@ -6,7 +6,7 @@
 /*   By: skomatsu <skomatsu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:47:22 by skomatsu          #+#    #+#             */
-/*   Updated: 2025/09/23 04:33:22 by skomatsu         ###   ########.fr       */
+/*   Updated: 2025/09/23 04:51:23 by skomatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void PhoneBook::add_contact()
     
     _contact[_index] = new_contact;
     _index = (_index + 1) % 8;
-    _count++;
-    
+    if (_count < 8)
+        _count++;
     std::cout << "Registration complete!" << std::endl;
 }
 
@@ -83,6 +83,12 @@ void PhoneBook::search_contact()
 {
     std::string input;
     int index;
+    
+    if (_count == 0) {
+        std::cout << "No contacts saved" << std::endl;
+        return;
+    }
+    
     display_phonebook();
     
     std::cout << "Enter index for searching" << std::endl;
@@ -93,12 +99,9 @@ void PhoneBook::search_contact()
         return;
     }
     index = input[0] - '0';
-    if (index < 0 || index >= _count || index > 8)
+    if (index < 0 || index >= _count)
     {
-        if (index < 0 || index > 8)
-            std::cout << "Index out of range" << std::endl;
-        else
-            std::cout << "There is nothing in that index" << std::endl;
+        std::cout << "Index out of range" << std::endl;
         return;
     }
     
