@@ -2,17 +2,17 @@
 NAME		= PhoneBook
 
 CXX			= c++
-CXXFLAGS 	= -Wall -Werror -Wextra
+CXXFLAGS 	= -Wall -Werror -Wextra -g
 CXXFLAGS	+= -std=c++98
 
 RM			= rm -rf
-SRCS		= PhoneBook.cpp Contact.cpp
-INCLUDES	= PhoneBook.hpp Contack.hpp
+SRCS		= main.cpp PhoneBook.cpp Contact.cpp
+INCLUDES	= PhoneBook.hpp Contact.hpp
 OBJS		= $(SRCS:.cpp=.o)
 
 all: $(NAME)
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -I $(INCLUDES) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)
